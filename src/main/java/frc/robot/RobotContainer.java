@@ -49,21 +49,18 @@ public class RobotContainer
   {
     //X
     shootClose = new JoystickButton(logi, 1); 
-    shootClose.whenPressed(new InstantCommand(()-> shooter.close(.5, .7)));
+    shootClose.whenPressed(new InstantCommand(()-> shooter.close(.45, .7)));
     //shootClose.whileHeld(new StartEndCommand(()-> shooter.close(1, 1), ()-> shooter.close(0, 0), shooter));
 
     //A
     shootFar = new JoystickButton(logi, 2); 
-    shootFar.whenPressed(new InstantCommand(()-> shooter.far(.7, .9)));
+    shootFar.whenPressed(new InstantCommand(()-> shooter.far(.65, .9)));
     //shootFar.whileHeld(new StartEndCommand(()-> shooter.far(1, 1), ()-> shooter.far(0, 0), shooter));
 
 
     //B
     shootStop = new JoystickButton(logi, 3); 
     shootStop.whenPressed(new InstantCommand(()-> shooter.stopAll()));
-
-    //Y
-    
   }
 
   /**
