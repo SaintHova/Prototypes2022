@@ -15,6 +15,7 @@ import frc.robot.Constants;
 public class ShooterJG extends SubsystemBase 
 {
   public Spark topMotor, bottomMotor;
+  
   ShuffleboardTab shooter = Shuffleboard.getTab("Shooter");
 
   NetworkTableEntry motorPowerTop = 
@@ -27,15 +28,12 @@ public class ShooterJG extends SubsystemBase
     .withSize(2, 1)
     .withPosition(0, 2)
     .getEntry();
-    
-  private int cnt;
+
   /** Creates a new Shooter. */
   public ShooterJG() 
   {
     topMotor = new Spark(Constants.SHOOTER_MOTOR);
-    topMotor = new Spark(Constants.SHOOTER_MOTOR2);
-
-    cnt = 1;
+    bottomMotor = new Spark(Constants.SHOOTER_MOTOR2);
   }
 
   @Override
@@ -43,41 +41,11 @@ public class ShooterJG extends SubsystemBase
   {
     // This method will be called once per scheduler run
   }
-  public void close(double top, double bottom)
+  public void set(double top, double bottom)
   {
-    this.cnt+=1;
-    if(this.cnt%2==0)
-    {
-      System.out.println("Cnt: " + cnt);
-      topMotor.set(top);
-      bottomMotor.set(bottom);
-    }
-    else
-    {
-      System.out.println("Cnt: " + cnt + " Whatever this returns: " + topMotor.toString());
-      topMotor.set(0);
-      bottomMotor.set(0);
-    }
+    topMotor.set(top);
+    bottomMotor.set(bottom);
 
-    motorPowerTop.setDouble(top);
-    motorPowerBottom.setDouble(bottom);
-  }
-  public void far(double top, double bottom)
-  {
-    this.cnt+=1;
-    if(this.cnt%2==0)
-    {
-      System.out.println("Cnt: " + cnt);
-      topMotor.set(top);
-      bottomMotor.set(bottom);
-    }
-    else
-    {
-      System.out.println("Cnt: " + cnt + " Whatever this returns: " + topMotor.toString());
-      topMotor.set(0);
-      bottomMotor.set(0);
-    }
-    
     motorPowerTop.setDouble(top);
     motorPowerBottom.setDouble(bottom);
   }
@@ -88,14 +56,6 @@ public class ShooterJG extends SubsystemBase
 
     motorPowerTop.setDouble(top);
     motorPowerBottom.setDouble(bottom);
-  }
-  public void stopAll()
-  {
-    topMotor.set(0);
-    bottomMotor.set(0);
-    
-    motorPowerTop.setDouble(0);
-    motorPowerBottom.setDouble(0);
   }
 }
 /*
