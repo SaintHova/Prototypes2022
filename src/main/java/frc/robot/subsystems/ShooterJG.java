@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 
-public class Shooter extends SubsystemBase 
+public class ShooterJG extends SubsystemBase 
 {
   public Spark topMotor, bottomMotor;
   ShuffleboardTab shooter = Shuffleboard.getTab("Shooter");
@@ -30,7 +30,7 @@ public class Shooter extends SubsystemBase
     
   private int cnt;
   /** Creates a new Shooter. */
-  public Shooter() 
+  public ShooterJG() 
   {
     topMotor = new Spark(Constants.SHOOTER_MOTOR);
     topMotor = new Spark(Constants.SHOOTER_MOTOR2);

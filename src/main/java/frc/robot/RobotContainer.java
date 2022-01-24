@@ -12,7 +12,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.IntakeJP;
+import frc.robot.subsystems.ShooterJG;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,10 +24,11 @@ import frc.robot.subsystems.Shooter;
 public class RobotContainer 
 {
   // The robot's subsystems and commands are defined here...
-  private final Shooter shooter = new Shooter();
+  private final ShooterJG shooterJG = new ShooterJG();
+  private final IntakeJP intakeJP = new IntakeJP();
 
   public Joystick logi = new Joystick(0);
-  private JoystickButton shootClose, shootFar, shootStop;
+  private JoystickButton shootClose, shootFar, shootStop, runIntake, stopIntake;
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() 
@@ -34,9 +36,9 @@ public class RobotContainer
     // Configure the button bindings
     configureButtonBindings();
 
-    shooter.setDefaultCommand(
-      new RunCommand(()-> shooter.shootVar(logi.getRawAxis(-1), logi.getRawAxis(-0)),
-      shooter));
+    shooterJG.setDefaultCommand(
+      new RunCommand(()-> shooterJG.shootVar(logi.getRawAxis(-1), logi.getRawAxis(-0)),
+      shooterJG));
   }
 
   /**
@@ -49,18 +51,26 @@ public class RobotContainer
   {
     //X
     shootClose = new JoystickButton(logi, 1); 
-    shootClose.whenPressed(new InstantCommand(()-> shooter.close(.45, .7)));
+    shootClose.whenPressed(new InstantCommand(()-> shooterJG.close(.45, .7)));
     //shootClose.whileHeld(new StartEndCommand(()-> shooter.close(1, 1), ()-> shooter.close(0, 0), shooter));
 
     //A
     shootFar = new JoystickButton(logi, 2); 
-    shootFar.whenPressed(new InstantCommand(()-> shooter.far(.65, .9)));
+    shootFar.whenPressed(new InstantCommand(()-> shooterJG.far(.65, .9)));
     //shootFar.whileHeld(new StartEndCommand(()-> shooter.far(1, 1), ()-> shooter.far(0, 0), shooter));
 
 
     //B
     shootStop = new JoystickButton(logi, 3); 
-    shootStop.whenPressed(new InstantCommand(()-> shooter.stopAll()));
+    shootStop.whenPressed(new InstantCommand(()-> shooterJG.stopAll()));
+
+    //Y
+    runIntake = new JoystickButton(logi, 4);
+    runIntake.whenPressed(new InstantCommand(()-> intakeJP.runIntake(1)));
+
+    //left bumper
+    stopIntake = new JoystickButton(logi, 5);
+    stopIntake.whenPressed(new InstantCommand(()-> intakeJP.stopIntake()));
   }
 
   /**
