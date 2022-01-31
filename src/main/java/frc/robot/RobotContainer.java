@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Conveyer;
@@ -55,21 +54,23 @@ public class RobotContainer
     //REMOVE SUBSYTEMS THAT ARE NOT BEING TESTED
     //X
     shootClose = new JoystickButton(logi, 1); 
-    shootClose.whenPressed(new StartEndCommand(()-> shooterJG.set(.45, .7), ()-> shooterJG.set(0, 0), shooterJG));
+    shootClose.toggleWhenPressed(new StartEndCommand(()-> shooterJG.set(.45, .7), ()-> shooterJG.set(0, 0), shooterJG));
     // shootClose.whileHeld(new StartEndCommand(()-> shooterJG.set(.45, .7), ()-> shooterJG.set(0, 0), shooterJG));
 
     //A
     shootFar = new JoystickButton(logi, 2); 
-    shootFar.whenPressed(new StartEndCommand(()-> shooterJG.set(.65, .9), ()-> shooterJG.set(0, 0), shooterJG));
+    shootFar.toggleWhenPressed(new StartEndCommand(()-> shooterJG.set(.65, .9), ()-> shooterJG.set(0, 0), shooterJG));
     // shootFar.whileHeld(new StartEndCommand(()-> shooterJG.set(.65, .9), ()-> shooterJG.set(0, 0), shooterJG));
 
     //B
     runIntake = new JoystickButton(logi, 3);
-    runIntake.whenPressed(new StartEndCommand(()-> intakeJP.set(1), ()-> intakeJP.set(0), intakeJP));
+    runIntake.toggleWhenPressed(new StartEndCommand(()-> intakeJP.set(1), ()-> intakeJP.set(0), intakeJP));
+    // runIntake.whenHeld(new StartEndCommand(()-> intakeJP.set(1), ()-> intakeJP.set(0), intakeJP));
 
     //Y
     runConveyer = new JoystickButton(logi, 4);
-    runConveyer.whenPressed(new StartEndCommand(()-> conveyer.set(1, 1), ()-> conveyer.set(0, 0), conveyer));
+    runConveyer.toggleWhenPressed(new StartEndCommand(()-> conveyer.set(1, 1), ()-> conveyer.set(0, 0), conveyer));
+    // runConveyer.whileHeld(new StartEndCommand(()-> conveyer.set(1, 1), ()-> conveyer.set(1, 1), conveyer));
   }
 
   /**
