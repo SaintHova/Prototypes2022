@@ -17,9 +17,6 @@ public final class Constants
     public static final int SHOOTER_MOTOR = 0;
     public static final int SHOOTER_MOTOR2 = 1;
     public static final int INTAKE_MOTOR = 2;
-
-    public static final int FRONTL = 0;
-    public static final int FRONTR = 0;
-    public static final int BACKL = 0;
-    public static final int BACKR = 0;
+    public static final int CONVEYER_MOTOR1 = 3;
+    public static final int CONVEYER_MOTOR2 = 4;
 }

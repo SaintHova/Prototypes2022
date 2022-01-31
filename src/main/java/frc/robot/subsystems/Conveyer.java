@@ -3,20 +3,18 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-
-public class ShooterJG extends SubsystemBase 
+public class Conveyer extends SubsystemBase
 {
-  public Spark topMotor, bottomMotor;
-  /** Creates a new Shooter. */
-  public ShooterJG() 
+  public Spark motor1, motor2;
+  /** Creates a new Conveyer. */
+  public Conveyer() 
   {
-    topMotor = new Spark(Constants.SHOOTER_MOTOR);
-    bottomMotor = new Spark(Constants.SHOOTER_MOTOR2);
+    motor1 = new Spark(Constants.CONVEYER_MOTOR1);
+    motor2 = new Spark(Constants.CONVEYER_MOTOR2);
   }
 
   @Override
@@ -24,9 +22,9 @@ public class ShooterJG extends SubsystemBase
   {
     // This method will be called once per scheduler run
   }
-  public void set(double top, double bottom)
+  public void set(double speed1, double speed2)
   {
-    topMotor.set(top);
-    bottomMotor.set(bottom);
+    motor1.set(speed1);
+    motor2.set(speed2);
   }
 }
